@@ -1,0 +1,42 @@
+  <form>
+      <input type="text" ng-model="view.searchText" placeholder="Search Text">
+  </form>
+  <a ui-sref="selected"><p>Shopping Cart: {{view.cartLoad}} Cost: {{view.totalCost | newCurrency | currency}}</p></a>
+  <div class="col s12 m7" ng-repeat="tea in view.info | filter:view.searchText">
+    <div class="card small">
+    <h2 class="header">{{tea.name}}</h2>
+    <div class="card horizontal">
+      <div class="card-image">
+        <img ng-src="{{tea.imageUrl}}">
+      </div>
+      <div class="card-stacked">
+        <div class="card-content">
+          <form name="orderForm">
+            <label for="quantity">Quantity: </label>
+            <select id="quantity" ng-model="quantitySearch">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+            <button type="submit" ng-click="view.submitOrder(quantitySearch, tea); view.itemsOrdered">Add To Cart</button>
+          </form>
+          <p>Price: {{tea.price | newCurrency | currency}}</p>
+          <p>Caffeine Scale: {{tea.caffeineScale}}</p>
+          <p>Rating: {{tea.rating}}</p>
+          <p ng-show="tea.inStock">In Stock</p>
+          <p>Ingredients: {{tea.ingredients}}</p>
+          <ul>
+            <li ng-repeat="category in tea.categories">Category: {{category}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>

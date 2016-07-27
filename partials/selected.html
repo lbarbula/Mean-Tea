@@ -1,0 +1,25 @@
+<p>Total: {{view.getTotal | newCurrency | currency}}</p>
+<p>Orders: {{view.getCart}}</p>
+<div class="col s12 m7" ng-repeat="tea in view.selected">
+  <div class="card small">
+  <h2 class="header">{{tea.name}}</h2>
+  <div class="card horizontal">
+    <div class="card-image">
+      <img ng-src="{{tea.imageUrl}}">
+    </div>
+    <div class="card-stacked">
+      <div class="card-content">
+        <p>Price: {{tea.subtotal | newCurrency | currency}}</p>
+        <p>Caffeine Scale: {{tea.caffeineScale}}</p>
+        <p>Ingredients: {{tea.ingredients}}</p>
+        <p>Rating: {{tea.rating}}</p>
+        <input type="text">Quantity: {{tea.quantity}}</input>
+        <button type="button" ng-click="updateQuantity">Update</button>
+        <ul>
+          <li ng-repeat="category in tea.categories">Category: {{category}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>

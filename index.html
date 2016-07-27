@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html ng-app="teaApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Tea App</title>
+    <link rel="stylesheet" href="style.css">
+    <base href="/">
+  </head>
+  <body>
+      <div ng-controller="homeController">
+        <p>{{view.message}}</p>
+      </div>
+      <div ui-view></div>
+    <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-materialize/0.1.9/angular-materialize.min.js"></script>
+    <script src="./app/app.js"></script>
+    <script src="./app/filters.js"></script>
+    <script src="./app/services.js"></script>
+    <script src="./app/controllers.js"></script>
+    <script src="./app/selectController.js"></script>
+  </body>
+</html>
