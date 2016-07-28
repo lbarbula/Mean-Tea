@@ -5,11 +5,13 @@ angular
   $scope.view = {}
   $scope.view.cartLoad = 0
   $scope.view.totalCost = 0
-  $scope.view.results =
+    getInformation.getCategories
+      .then(function(data){
+        $scope.view.categories = data
+      })
+
     getInformation.info
       .then(function(data){
-        console.log(data.data)
-        console.log("categories", data.data[0].categories)
         $scope.view.info = data.data
   })
   $scope.view.submitOrder = function (num, tea) {

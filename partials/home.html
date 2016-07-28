@@ -1,8 +1,12 @@
   <form>
       <input type="text" ng-model="view.searchText" placeholder="Search Text">
   </form>
+  <select  ng-model="categorySort">
+    <option value="">Unordered</option>
+    <option ng-repeat="category in view.categories" value="{{category}}">{{category}}</option>
+  </select>
   <a ui-sref="selected"><p>Shopping Cart: {{view.cartLoad}} Cost: {{view.totalCost | newCurrency | currency}}</p></a>
-  <div class="col s12 m7" ng-repeat="tea in view.info | filter:view.searchText">
+  <div class="col s12 m7" ng-repeat="tea in view.info | filter:view.searchText | filter:categorySort">
     <div class="card small">
     <h2 class="header">{{tea.name}}</h2>
     <div class="card horizontal">

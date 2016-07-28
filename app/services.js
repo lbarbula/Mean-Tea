@@ -11,12 +11,36 @@ function teaFactory($http){
         return data
       }),
     submitOrder: (num, tea) => {
+      tea['quantity'] = parseInt(num)
       tea['subtotal'] = tea.price * num
-      tea['quantity'] = num
+      tea['increaseQuantity'] = function () {
+        let index = selectedTeas.indexOf(tea)
+        this.quantity += 1
+        this.subtotal = tea.price * this.quantity
+        totalCost[index] += tea.price
+      }
+      tea['decreaseQuantity'] = function () {
+        let index = selectedTeas.indexOf(tea)
+        this.quantity -= 1
+        this.subtotal = tea.price * this.quantity
+        totalCost[index] -= tea.price
+      }
       selectedTeas.push(tea)
       totalCost.push(tea.subtotal)
-      console.log(selectedTeas)
     },
+    getCategories: $http.get('tea.json')
+      .then(function(data){
+        var categories = []
+        var teaData = data.data
+        teaData.forEach(tea => {
+          tea.categories.forEach(category => {
+            if(!categories.includes(category)) {
+              categories.push(category)
+            }
+            })
+          })
+        return categories
+      }),
     getSelectedTeas: () => {
       return selectedTeas
     },
@@ -26,7 +50,13 @@ function teaFactory($http){
     getTotalCost: () => {
       return totalCost.reduce(function(previousValue, currentValue) {
           return previousValue + currentValue
-    }, 0);
+        }, 0)
+    },
+    removeTea: (tea) => {
+        let removed = selectedTeas.indexOf(tea)
+        selectedTeas.splice(removed, 1)
+        totalCost[0] -= tea.subtotal
+        totalCost.splice(removed, 1)
+      }
     }
   }
-}

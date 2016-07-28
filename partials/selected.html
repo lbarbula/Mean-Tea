@@ -12,9 +12,12 @@
         <p>Price: {{tea.subtotal | newCurrency | currency}}</p>
         <p>Caffeine Scale: {{tea.caffeineScale}}</p>
         <p>Ingredients: {{tea.ingredients}}</p>
+        <p>Subtotal: {{tea.subtotal | newCurrency | currency}}
         <p>Rating: {{tea.rating}}</p>
-        <input type="text">Quantity: {{tea.quantity}}</input>
-        <button type="button" ng-click="updateQuantity">Update</button>
+        <p>Quantity: {{tea.quantity}}</p>
+        <button type="button" ng-click="view.removeTea(tea); view.getNewTeas(); view.getNewTotal()">Remove Order</button>
+        <button type="button" ng-click="tea.increaseQuantity(); view.getNewTotal()">Increase</button>
+        <button type="button" ng-click="tea.decreaseQuantity(); view.getNewTotal()">Decrease</button>
         <ul>
           <li ng-repeat="category in tea.categories">Category: {{category}}</li>
         </ul>
